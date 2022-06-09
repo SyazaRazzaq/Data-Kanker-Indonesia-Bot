@@ -1,4 +1,4 @@
-name: Save
+name: Monthly
 
 on:
   schedule:
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
-      - name: Install RPostgreSQL package
-        run: Rscript -e 'install.packages("RPostgreSQL", dependencies = TRUE)'
-      - name: Run The R Script
-        run: Rscript save.R
+      - name: Install package
+        run: Rscript -e 'install.packages(c("dplyr", "rtweet", "rvest", "mongolite", "xml", "xml2"))'
+      - name: Create and post tweet
+        run: Rscript Monthly.R 
