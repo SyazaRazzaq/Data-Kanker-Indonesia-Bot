@@ -17,7 +17,7 @@ market = market[-1,]
 
 ##Menyimpan update data ke MongoDB Database
 #Menyiapkan koneksi
-connection_string = 'mongodb+srv://derikayz16:derYsaga123@cluster0.t9p0r.mongodb.net/admin?retryWrites=true&w=majority'
+connection_string = 'mongodb+srv://USERNAME:PASSWORD@CLUSTER.CODE.mongodb.net/admin?retryWrites=true&w=majority'
 
 #Markets
 pasar = mongo(collection="Pasar_Keuangan",
