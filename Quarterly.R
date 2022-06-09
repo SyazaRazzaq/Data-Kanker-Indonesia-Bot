@@ -27,10 +27,10 @@ gdpcollect$insert(gdp)
 ## Create Twitter token
 indikator_token <- create_token(
   app = "Indikator Ekonomi",
-  consumer_key =    "ObMiJ5y1aRrDbNIEbAQxfQ2fk",
-  consumer_secret = "E7385ThAwfVvuIHnl9TDI4VR9tckHxyAb95yqEWrenEYQf0Od0",
-  access_token =    "1498511089176571906-ChmN2VHYRkruY9cmSzsSosWq39vW0m",
-  access_secret =   "WT1djx2I7p2IZWTLwQUoAbsYpZi7sBD8D4hf9gQCdvOrG")
+  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
+  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
+  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
+  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
 
 ##Tweet
 gdp_tweet <- paste0("Update GDP Indonesia",
