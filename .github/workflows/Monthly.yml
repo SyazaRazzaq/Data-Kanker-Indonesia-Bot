@@ -2,7 +2,7 @@ name: Monthly
 
 on:
   schedule:
-    - cron: '0,30 * * * *'  # once every 30 minutes
+    - cron: '*/10 * * * *'  # every 10 minutes
 
 permissions:
   contents: read
