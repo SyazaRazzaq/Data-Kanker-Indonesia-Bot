@@ -22,7 +22,7 @@ trade = trade[-1,]
 
 ##Menyimpan update data ke MongoDB Database
 #Menyiapkan koneksi
-connection_string = 'MONGODB_CONNECTION'
+connection_string = Sys.getenv('MONGODB_CONNECTION')
 
 #Harga
 harga = mongo(collection="Harga_Konsumen",
