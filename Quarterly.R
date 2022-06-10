@@ -15,7 +15,7 @@ gdp = data[1:8,]
 View(gdp)
 ##Menyimpan update data ke MongoDB Database
 #Menyiapkan koneksi
-connection_string = 'MONGODB_CONNECTION'
+connection_string = Sys.getenv('MONGODB_CONNECTION')
 
 #GDP
 gdpcollect = mongo(collection="GDP",
