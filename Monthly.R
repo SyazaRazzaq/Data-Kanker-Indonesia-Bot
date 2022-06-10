@@ -22,7 +22,7 @@ trade = trade[-1,]
 
 ##Menyimpan update data ke MongoDB Database
 #Menyiapkan koneksi
-connection_string = 'mongodb+srv://derikayz16:derYsaga123@cluster0.t9p0r.mongodb.net/admin?retryWrites=true&w=majority'
+connection_string = 'MONGODB_CONNECTION'
 
 #Harga
 harga = mongo(collection="Harga_Konsumen",
@@ -36,14 +36,14 @@ perdagangan = mongo(collection="Perdagangan",
               url=connection_string)
 perdagangan$insert(trade)
 
-#Publish to Twitter
+# Publish to Twitter
 ##Create Twitter token
 indikator_token <- create_token(
   app = "Indikator Ekonomi",
   consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
   consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
   access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
-  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
+  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET"))
 
 ##Tweet
 ###Price
