@@ -2,7 +2,7 @@ name: Daily
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # every 10 minutes
+    - cron: '0 20 * * *'  # every day  at 20:00
 
 permissions:
   contents: read
