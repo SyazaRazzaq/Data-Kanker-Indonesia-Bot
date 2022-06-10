@@ -2,7 +2,7 @@ name: Daily
 
 on:
   schedule:
-    - cron: '15,45 * * * *'  # twice every hour.
+    - cron: '0,30 * * * *'  # once every 30 minutes
 
 permissions:
   contents: read
