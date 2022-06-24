@@ -47,6 +47,6 @@ setup_twitter_oauth(consumerKey,consumerSecret,accessToken,accessTokenSecret)
 
 
 #Post Tweet !
-tweet(paste0("Data Jumlah Kematian di Asia Akibat Covid-19 hari ini sebanyak","\n", Data_covid_Asia_twit))
+tweet(paste0("Dataa Jumlah Kematian di Asia Akibat Covid-19 hari ini sebanyak","\n", Data_covid_Asia_twit))
 
 
