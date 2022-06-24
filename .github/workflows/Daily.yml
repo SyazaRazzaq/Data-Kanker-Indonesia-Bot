@@ -2,7 +2,7 @@ name: Daily
 
 on:
   schedule:
-    - cron: '1 * * * *'  # Setiap 1 menit
+    - cron: '32 0 * * *'  # Setiap 1 menit
 permissions:
   contents: read
 
