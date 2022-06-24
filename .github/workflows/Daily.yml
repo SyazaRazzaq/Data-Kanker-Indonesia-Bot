@@ -2,8 +2,7 @@ name: Daily
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # every day  at 20:00
-
+    - cron: '1 * * * *'  # Setiap 1 menit
 permissions:
   contents: read
 
@@ -12,7 +11,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        r-version: ['4.1.1']
+        r-version: ['4.1.2']
     env:
       MONGODB_CONNECTION: ${{ secrets.MONGODB_CONNECTION }}
       TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
@@ -27,7 +26,7 @@ jobs:
           r-version: ${{ matrix.r-version }}
       - name: Install dependencies
         run: |
-          install.packages(c("dplyr", "rtweet", "rvest", "mongolite", "xml", "xml2"))
+          install.packages(c("dplyr", "rtweet", "rvest", "mongolite", "xml", "xml2", "twitteR", "purrr")
         shell: Rscript {0}
       - name: Create and post tweet
         run: Rscript Daily.R    
