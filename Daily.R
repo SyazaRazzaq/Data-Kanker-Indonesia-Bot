@@ -42,24 +42,12 @@ consumerSecret='sf4sLshmjJwCkADIg8Ofx8SpCdbba8zU1aCpONo7Kd2iytMi3x'
 accessToken='1493744457337901066-33bCMfVLQ7mW46WmcU1iOEyi1qTL9p'
 accessTokenSecret= 's1JR3nahtMLUqbAHJImjQhuUiMyD6WIS1rwrUV5kPt60H'
 
-# Publish to Twitter
-##Create Twitter token
-indikator_token <- create_token(
-  app = "Tugas UAS MDS",
-  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
-  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
-  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
-  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
-)
-
-
-post_tweet(status = "market_tweet", token = indikator_token)
 
 #Connect to twitter
 setup_twitter_oauth(consumerKey,consumerSecret,accessToken,accessTokenSecret)
 
 
 #Post Tweet !
-tweet(paste0("Dataa Jumlah Kematian di Asia Akibat Covid-19 hari ini sebanyak","\n", Data_covid_Asia_twit))
+tweet(paste0("Data Jummlah Kematian di Asia Akibat Covid-19 hari ini sebanyak","\n", Data_covid_Asia_twit))
 
 
