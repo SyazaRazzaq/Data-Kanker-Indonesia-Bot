@@ -1,56 +1,52 @@
-##Library
+#Library
 library(dplyr)
 library(rvest)
 library(rtweet)
 library(mongolite)
+library(twitteR)
+library(purrr)
 
 ##Scraping Data
-urlPT <- "https://www.economy.com/indonesia/indicators"
+urlPT <- "https://www.worldometers.info/coronavirus/"
 data <- urlPT %>% read_html() %>% html_table
-data <- data[[1]]
+data <- data[[2]]
 View(data)
 
-#Financial Market (Daily)
-market = data[42:44,]
-colnames(market) <- market[1,]
-market = market[-1,]
 
+
+#Index Kematian
+Data_covid = data[1:6,2:9]
+
+View(Data_covid)
+Data_covid_Asia<-Data_covid[1,2]
 ##Menyimpan update data ke MongoDB Database
 #Menyiapkan koneksi
+
+
+
 connection_string = Sys.getenv("MONGODB_CONNECTION")
 
-#Markets
-pasar = mongo(collection="Pasar_Keuangan",
-              db="Indikator_Ekonomi",
-              url=connection_string)
-pasar$insert(market)
+#Index Kematian
+Index = mongo(collection="Data_covid_Asia",
+              db="CovidAsia")
+Index$insert(Data_covid_Asia)
 
-# Publish to Twitter
-##Create Twitter token
-indikator_token <- create_token(
-  app = "Indikator Ekonomi",
-  consumer_key =    Sys.getenv("TWITTER_CONSUMER_API_KEY"),
-  consumer_secret = Sys.getenv("TWITTER_CONSUMER_API_SECRET"),
-  access_token =    Sys.getenv("TWITTER_ACCESS_TOKEN"),
-  access_secret =   Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET")
-)
+Data_covid_Asia_twit<-Data_covid_Asia[1,1]
+Data_covid_Asia_twit<-as.character(Data_covid_Asia_twit)
+class(Data_covid_Asia_twit)
 
-##Tweet
-market_tweet <- paste0("Indikator Pasar Keuangan Indonesia",
-                       "\n",
-                       "\n",
-                       market[1,1], " periode ", market[1,2], " adalah ", market[1,3],
-                       " atau berubah sebesar ", 
-                       round(((as.numeric(market[1,3])-as.numeric(market[1,4]))/as.numeric(market[1,4])*100),2),
-                       " persen dari periode sebelumnya.",
-                       "\n",
-                       "\n",
-                       market[2,1], " periode ", market[2,2], " adalah ", market[2,3],
-                       " atau berubah sebesar ", 
-                       round(((as.numeric(sub(",", ".", market[2,3], fixed = TRUE))
-                               -as.numeric(sub(",", ".", market[2,4], fixed = TRUE)))
-                              /as.numeric(sub(",", ".", market[2,4], fixed = TRUE))*100),2),
-                       " persen dari periode sebelumnya.")
 
-## Post the image to Twitter
-post_tweet(status = market_tweet, token = indikator_token)
+#REPLACE '####' with the appropriate values from your twitter app
+consumerKey='F68HEDWP6uhu9FNEAw3KfeMkV'
+consumerSecret='sf4sLshmjJwCkADIg8Ofx8SpCdbba8zU1aCpONo7Kd2iytMi3x'
+accessToken='1493744457337901066-33bCMfVLQ7mW46WmcU1iOEyi1qTL9p'
+accessTokenSecret= 's1JR3nahtMLUqbAHJImjQhuUiMyD6WIS1rwrUV5kPt60H'
+
+#Connect to twitter
+setup_twitter_oauth(consumerKey,consumerSecret,accessToken,accessTokenSecret)
+
+
+#Post Tweet !
+tweet(paste0("Data Jumlah Kematian di Asia Akibat Covid-19 hari ini sebanyak","\n", Data_covid_Asia_twit))
+
+
